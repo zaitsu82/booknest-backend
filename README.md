@@ -38,7 +38,7 @@ SSL モード: require（厳密なSSLチェック）
 spring.application.name=booknest-backend
 
 # RDSの接続設定
-spring.datasource.url= XXX
+spring.datasource.url=XXX
 spring.datasource.username=XXX
 spring.datasource.password=XXX
 spring.datasource.driver-class-name=org.postgresql.Driver
