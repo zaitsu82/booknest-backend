@@ -21,7 +21,7 @@ RDSインスタンスへのアクセスは、セキュリティグループで�
 「接続」タブ を開き、以下のRDS情報を設定  
   
 ### RDSインスタンスの設定情報 
-ホスト名/アドレス: `book-nest-postgres-db.crm88c6cuahe.ap-northeast-1.rds.amazonaws.com`  
+ホスト名/アドレス: ~~~
 ポート: `5432`  
 管理者用データベース: `db_name_book_nest`  
 ユーザ名:	`book_nest_admin`   
@@ -47,7 +47,7 @@ public class BooknestBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BooknestBackendApplication.class, args);  
 		
-        String url = "jdbc:postgresql://book-nest-postgres-db.crm88c6cuahe.ap-northeast-1.rds.amazonaws.com:5432/db_name_book_nest";  
+        String url = "~~~";  
         String user = "book_nest_admin";  
         String password = "bookNestPass1739";  
 
