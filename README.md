@@ -21,7 +21,7 @@ RDSインスタンスへのアクセスは、セキュリティグループで�
 「接続」タブ を開き、以下のRDS情報を設定  
   
 ### RDSインスタンスの設定情報 
-ホスト名/アドレス: ~~~
+ホスト名/アドレス: ~~~  
 ポート: `5432`  
 管理者用データベース: `db_name_book_nest`  
 ユーザ名:	`book_nest_admin`   
@@ -34,8 +34,21 @@ SSL モード: require（厳密なSSLチェック）
 接続成功すれば、左のツリーにRDSのサーバーが表示される  
 
 ## 3. application.propertiesにDB接続情報を設定  
-![image](https://github.com/user-attachments/assets/f1537478-b317-4e16-b0f5-f3ea38353e33)
+```
+spring.application.name=booknest-backend
 
+# RDSの接続設定
+spring.datasource.url= ~~~
+spring.datasource.username=book_nest_admin
+spring.datasource.password=bookNestPass1739
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# 他の設定（必要に応じて追加）
+# update にすると、アプリケーションの起動時に必要なテーブルが自動で作成される（開発環境でのみ使用推奨）
+spring.jpa.hibernate.ddl-auto=update
+# SQLをコンソールに出力したい場合、true に設定
+spring.jpa.show-sql=true
+```
   
 ## 4. 接続確認  
 mainメソッドに下記コードをコピペし、アプリケーションを起動。  
