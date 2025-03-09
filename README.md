@@ -21,6 +21,8 @@ RDSインスタンスへのアクセスは、セキュリティグループで�
 「接続」タブ を開き、以下のRDS情報を設定  
   
 ### RDSインスタンスの設定情報 
+※envファイルを共有して貰うことでXXXの情報が分かる。  
+
 ホスト名/アドレス: XXX  
 ポート: `5432`  
 管理者用データベース: `XXX`  
@@ -34,6 +36,9 @@ SSL モード: require（厳密なSSLチェック）
 接続成功すれば、左のツリーにRDSのサーバーが表示される  
 
 ## 3. application.propertiesにDB接続情報を設定  
+1.envファイルをルートディレクトリに配置  
+2.application.propertiesに以下を設定  
+
 ```
 spring.application.name=booknest-backend
 
