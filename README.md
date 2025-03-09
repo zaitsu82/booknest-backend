@@ -86,3 +86,4 @@ public class BooknestBackendApplication {
 	}
 }
 ```
+※あくまで接続確認のコードをmainメソッドで確認しているだけなので、接続が問題なければ元に戻す。
