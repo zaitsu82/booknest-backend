@@ -21,11 +21,11 @@ RDSインスタンスへのアクセスは、セキュリティグループで�
 「接続」タブ を開き、以下のRDS情報を設定  
   
 ### RDSインスタンスの設定情報 
-ホスト名/アドレス: ~~~  
+ホスト名/アドレス: XXX  
 ポート: `5432`  
 管理者用データベース: `db_name_book_nest`  
-ユーザ名:	`book_nest_admin`   
-パスワード:	`bookNestPass1739`  
+ユーザ名:	`XXX`   
+パスワード:	`XXX`  
 
 (2)「パラメータ」タブ を開く
 SSL モード: require（厳密なSSLチェック）  
@@ -38,9 +38,9 @@ SSL モード: require（厳密なSSLチェック）
 spring.application.name=booknest-backend
 
 # RDSの接続設定
-spring.datasource.url= ~~~
-spring.datasource.username=book_nest_admin
-spring.datasource.password=bookNestPass1739
+spring.datasource.url= XXX
+spring.datasource.username=XXX
+spring.datasource.password=XXX
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 # 他の設定（必要に応じて追加）
@@ -60,9 +60,9 @@ public class BooknestBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BooknestBackendApplication.class, args);  
 		
-        String url = "~~~";  
-        String user = "book_nest_admin";  
-        String password = "bookNestPass1739";  
+        String url = "XXX";  
+        String user = "XXX";  
+        String password = "XXX";  
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {  
             System.out.println("コネクション接続成功!");  
