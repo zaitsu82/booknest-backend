@@ -33,11 +33,16 @@ public class UserService {
 	 * @param username ユーザー名
 	 * @param password パスワード
 	 */
-	public void insertUser(String username, String password) {
-		UserEntity user = new UserEntity();
-		user.setUsername(username);
-		user.setPassword(passwordEncoder.encode(password));
-		userMapper.insertUser(user);
+	public void insertUser(String username, String password, String email) {
+		// パスワードをハッシュ化
+		String hashedPassword = passwordEncoder.encode(password);
+
+		UserEntity userEntity = UserEntity.builder()
+				.username(username)
+				.password(hashedPassword)
+				.email(email)
+				.build();
+		userMapper.insertUser(userEntity);
 	}
 
 	/**

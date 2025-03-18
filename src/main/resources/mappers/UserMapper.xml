@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.booknest.auth.mapper.UserMapper">
+
+	<!-- ユーザー登録 -->
+	<insert id="insertUser"
+		parameterType="com.booknest.auth.entity.UserEntity">
+		INSERT
+		INTO auth.users
+		(email,
+		password,
+		username,
+		created_at)
+		VALUES (#{email},
+		#{password},
+		#{username},
+		NOW())
+	</insert>
+
+</mapper>

@@ -1,44 +1,48 @@
 package com.booknest.auth.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * ユーザーエンティティクラス
  */
-@Entity
-@Table(name = "users")
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
 public class UserEntity {
 
 	/**
 	 * ユーザーID
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long userId;
 
 	/**
-	 * ユーザー名
+	 * email
 	 */
-	@Column(nullable = false, unique = true)
-	private String username;
+	private String email;
 
 	/**
 	 * パスワード
 	 */
-	@Column(nullable = false)
 	private String password;
+
+	/**
+	 * ユーザー名
+	 */
+	private String username;
+
+	/**
+	 * 登録日時
+	 */
+	private final LocalDateTime createdAt = LocalDateTime.now();
+
+	/**
+	 * 更新日時
+	 */
+	private LocalDateTime updatedAt;
 }

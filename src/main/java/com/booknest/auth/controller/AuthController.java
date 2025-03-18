@@ -3,7 +3,6 @@ package com.booknest.auth.controller;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,7 @@ public class AuthController {
 	 */
 	private final JwtUtil jwtUtil;
 
-	public AuthController(UserService userService, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
+	public AuthController(UserService userService, JwtUtil jwtUtil) {
 		this.userService = userService;
 		this.jwtUtil = jwtUtil;
 	}
@@ -46,7 +45,8 @@ public class AuthController {
 	public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
 		String username = request.get("username");
 		String password = request.get("password");
-		userService.insertUser(username, password);
+		String email = request.get("email");
+		userService.insertUser(username, password, email);
 		return ResponseEntity.ok("User registered successfully");
 	}
 
