@@ -11,11 +11,13 @@
 		INTO auth.users
 		(email,
 		password,
-		username,
+		first_name,
+		last_name,
 		created_at)
 		VALUES (#{email},
 		#{password},
-		#{username},
+		#{firstName},
+		#{lastName},
 		NOW())
 	</insert>
 
