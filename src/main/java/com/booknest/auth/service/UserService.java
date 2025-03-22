@@ -33,12 +33,13 @@ public class UserService {
 	 * @param username ユーザー名
 	 * @param password パスワード
 	 */
-	public void insertUser(String username, String password, String email) {
+	public void insertUser(String firstName, String lastName, String password, String email) {
 		// パスワードをハッシュ化
 		String hashedPassword = passwordEncoder.encode(password);
 
 		UserEntity userEntity = UserEntity.builder()
-				.username(username)
+				.firstName(firstName)
+				.lastName(lastName)
 				.password(hashedPassword)
 				.email(email)
 				.build();
@@ -46,14 +47,14 @@ public class UserService {
 	}
 
 	/**
-	 * ユーザー認証
+	 * ユーザーログイン
 	 * 
-	 * @param username ユーザー名
+	 * @param email メールアドレス
 	 * @param rawPassword パスワード
 	 * @return
 	 */
-	public boolean authenticateUser(String username, String rawPassword) {
-		return userMapper.findByUsername(username)
+	public boolean authenticateUser(String email, String rawPassword) {
+		return userMapper.findByEmail(email)
 				.map(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
 				.orElse(false);
 	}

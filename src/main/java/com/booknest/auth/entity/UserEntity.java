@@ -32,9 +32,14 @@ public class UserEntity {
 	private String password;
 
 	/**
-	 * ユーザー名
+	 * 姓
 	 */
-	private String username;
+	private String firstName;
+
+	/**
+	 * 名
+	 */
+	private String lastName;
 
 	/**
 	 * 登録日時

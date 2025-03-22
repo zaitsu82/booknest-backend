@@ -43,10 +43,11 @@ public class AuthController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
-		String username = request.get("username");
+		String firstName = request.get("firstName");
+		String lastName = request.get("lastName");
 		String password = request.get("password");
 		String email = request.get("email");
-		userService.insertUser(username, password, email);
+		userService.insertUser(firstName, lastName, password, email);
 		return ResponseEntity.ok("User registered successfully");
 	}
 
@@ -58,13 +59,13 @@ public class AuthController {
 	 */
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
-		String username = request.get("username");
+		String email = request.get("email");
 		String password = request.get("password");
 
-		if (userService.authenticateUser(username, password)) {
+		if (userService.authenticateUser(email, password)) {
 
 			// パスワードが正しければ、JWTを返却する
-			String token = jwtUtil.generateToken(username);
+			String token = jwtUtil.generateToken(email);
 			return ResponseEntity.ok(Map.of("token", token));
 		}
 		return ResponseEntity.status(401).body("Invalid credentials");
