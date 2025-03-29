@@ -2,19 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.booknest.auth.mapper.UserMapper">
+<mapper namespace="com.booknest.mapper.UserMapper">
 
 	<!-- ユーザー登録 -->
 	<insert id="insertUser"
-		parameterType="com.booknest.auth.entity.UserEntity">
+		parameterType="com.booknest.auth.entity.UserEntity"
+		useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
 		INSERT
-		INTO auth.users
+		INTO
+		auth.users
 		(email,
 		password,
 		first_name,
 		last_name,
 		created_at)
-		VALUES (#{email},
+		VALUES
+		(#{email},
 		#{password},
 		#{firstName},
 		#{lastName},

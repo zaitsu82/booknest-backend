@@ -43,12 +43,23 @@ public class AuthController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
-		String firstName = request.get("firstName");
-		String lastName = request.get("lastName");
-		String password = request.get("password");
-		String email = request.get("email");
-		userService.insertUser(firstName, lastName, password, email);
-		return ResponseEntity.ok("User registered successfully");
+		try {
+			String firstName = request.get("firstName");
+			String lastName = request.get("lastName");
+			String password = request.get("password");
+			String email = request.get("email");
+			// ユーザー新規登録処理
+			Long userId = userService.insertUser(firstName, lastName, password, email);
+			// JWT生成
+			String token = jwtUtil.generateToken(String.valueOf(userId));
+			return ResponseEntity.ok(Map.of(
+					"message", "登録が完了しました",
+					"token", token));
+		} catch (ExceptionInInitializerError e) {
+			// 登録失敗
+			return ResponseEntity.status(400).body(Map.of("message", "登録に失敗しました"));
+		}
+
 	}
 
 	/**
