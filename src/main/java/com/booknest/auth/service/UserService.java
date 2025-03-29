@@ -32,8 +32,9 @@ public class UserService {
 	 * 
 	 * @param username ユーザー名
 	 * @param password パスワード
+	 * @return ユーザーID
 	 */
-	public void insertUser(String firstName, String lastName, String password, String email) {
+	public Long insertUser(String firstName, String lastName, String password, String email) {
 		// パスワードをハッシュ化
 		String hashedPassword = passwordEncoder.encode(password);
 
@@ -44,6 +45,7 @@ public class UserService {
 				.email(email)
 				.build();
 		userMapper.insertUser(userEntity);
+		return userEntity.getUserId();
 	}
 
 	/**

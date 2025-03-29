@@ -34,12 +34,12 @@ public class JwtUtil {
 	/**
 	 * JWTの発行
 	 * 
-	 * @param username ユーザー名
+	 * @param userId ユーザーID
 	 * @return トークン
 	 */
-	public String generateToken(String username) {
+	public String generateToken(String userId) {
 		return Jwts.builder()
-				.setSubject(username) // ユーザー名（トークンの持ち主）を設定
+				.setSubject(userId) // ユーザーIDを設定
 				.setIssuedAt(new Date()) // トークンの発行時間を設定
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // トークンの有効時間を設定
 				.signWith(key, SignatureAlgorithm.HS256) // 秘密鍵を使用して署名（改ざん防止）
