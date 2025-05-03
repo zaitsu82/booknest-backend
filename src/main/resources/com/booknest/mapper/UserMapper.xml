@@ -10,7 +10,7 @@
 		useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
 		INSERT
 		INTO
-		auth.users
+		users
 		(email,
 		password,
 		first_name,
