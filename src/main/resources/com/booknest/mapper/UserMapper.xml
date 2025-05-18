@@ -4,13 +4,25 @@
 
 <mapper namespace="com.booknest.mapper.UserMapper">
 
+	<!-- ユーザーログイン -->
+	<select id="findByEmail" parameterType="String"
+		resultType="com.booknest.auth.entity.UserEntity">
+		SELECT
+		user_id,
+		password
+		FROM
+		book_nest.users
+		WHERE email =
+		#{email};
+	</select>
+
 	<!-- ユーザー登録 -->
 	<insert id="insertUser"
 		parameterType="com.booknest.auth.entity.UserEntity"
 		useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
 		INSERT
 		INTO
-		users
+		book_nest.users
 		(email,
 		password,
 		first_name,
