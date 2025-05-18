@@ -1,5 +1,7 @@
 package com.booknest.auth.service;
 
+import java.util.Objects;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -49,15 +51,18 @@ public class UserService {
 	}
 
 	/**
-	 * ユーザーログイン
+	 * ユーザー認証
 	 * 
 	 * @param email メールアドレス
 	 * @param rawPassword パスワード
-	 * @return
+	 * @return ユーザーID
 	 */
-	public boolean authenticateUser(String email, String rawPassword) {
-		return userMapper.findByEmail(email)
-				.map(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
-				.orElse(false);
+	public Long authenticateUser(String email, String rawPassword) {
+		UserEntity user = userMapper.findByEmail(email);
+		if (Objects.nonNull(user) && passwordEncoder.matches(rawPassword, user.getPassword())) {
+			return user.getUserId();
+		} else {
+			return null;
+		}
 	}
 }

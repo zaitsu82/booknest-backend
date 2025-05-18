@@ -1,6 +1,7 @@
 package com.booknest.auth.controller;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,11 +73,12 @@ public class AuthController {
 	public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
 		String email = request.get("email");
 		String password = request.get("password");
+		Long userId = userService.authenticateUser(email, password);
 
-		if (userService.authenticateUser(email, password)) {
+		if (Objects.nonNull(userId)) {
 
 			// パスワードが正しければ、JWTを返却する
-			String token = jwtUtil.generateToken(email);
+			String token = jwtUtil.generateToken(String.valueOf(userId));
 			return ResponseEntity.ok(Map.of("token", token));
 		}
 		return ResponseEntity.status(401).body("Invalid credentials");
