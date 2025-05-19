@@ -40,12 +40,11 @@ public class UserService {
 		// パスワードをハッシュ化
 		String hashedPassword = passwordEncoder.encode(password);
 
-		UserEntity userEntity = UserEntity.builder()
-				.firstName(firstName)
-				.lastName(lastName)
-				.password(hashedPassword)
-				.email(email)
-				.build();
+		UserEntity userEntity = new UserEntity();
+		userEntity.setFirstName(firstName);
+		userEntity.setLastName(lastName);
+		userEntity.setPassword(hashedPassword);
+		userEntity.setEmail(email);
 		userMapper.insertUser(userEntity);
 		return userEntity.getUserId();
 	}
